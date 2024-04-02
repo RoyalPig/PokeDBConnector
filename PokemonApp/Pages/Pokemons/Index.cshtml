@@ -1,0 +1,73 @@
+﻿@page
+@model PokemonApp.Pages.Pokemons.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].IsGood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemon[0].PokemonType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Pokemon) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    <img src="~/images/pokemons/@item.ImageName" alt="@item.Name" width="100" />
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsGood)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PokemonType.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PokemonId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PokemonId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PokemonId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
